@@ -38,7 +38,8 @@ solve(c)
 ### check if we get identity matrix when multiplying inverse with matrix
 solve(c) %*% c
 
-## construct function from example code that creates matrix object that can cache its inverse        
+## construct function (from example code) that creates a list that can be used by...
+## cacheSolve to get or set the inverted matrix        
 makeCacheMatrix <- function(x = matrix()) {
         m <- NULL
         set <- function(y) {
@@ -54,7 +55,10 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## construct function from example code that calcreates matrix object that can cache its inverse
+## cacheSolve will take the inverse of the matrix
+## If the inverted matrix is in cache, it will take that value
+## If not, it will create the inverted matrix in the working environment...
+## and it's stored in stored in cache
 cacheSolve <- function(x, ...) {
         m <- x$getinverse()
         if(!is.null(m)) {
